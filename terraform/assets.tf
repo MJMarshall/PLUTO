@@ -17,3 +17,16 @@ resource "google_cloud_asset_project_feed" "project_feed" {
   }
   depends_on = [google_pubsub_topic.topic]
 }
+
+resource "google_cloud_asset_project_feed" "spanner_project_feed" {
+  project      = var.project_id
+  feed_id      = "assets"
+  content_type = "RESOURCE"
+  asset_types = var.spanner_asset_list
+  feed_output_config {
+    pubsub_destination {
+      topic = google_pubsub_topic.spanner_topic.id
+    }
+  }
+  depends_on = [google_pubsub_topic.spanner_topic]
+}
