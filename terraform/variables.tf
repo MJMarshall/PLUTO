@@ -13,6 +13,11 @@ variable "topic" {
   type    = string
 }
 
+variable "spanner_topic" {
+  default = "spanner_activity"
+  type    = string
+}
+
 variable "function" {
   default = "pubsubtobq"
   type    = string
@@ -37,6 +42,17 @@ variable "asset_list" {
         "storage.googleapis.com/Bucket",
     ]
 }
+
+variable "spanner_asset_list" {
+    type = list(string)
+    default = [
+        "spanner.googleapis.com/Backup",
+        "spanner.googleapis.com/Database",
+        "spanner.googleapis.com/Instance",
+        "spanner.googleapis.com/InstanceConfig",
+    ]
+}
+
 
 variable "service_list" {
     type = list(string)
