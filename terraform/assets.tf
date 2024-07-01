@@ -27,7 +27,7 @@ resource "google_pubsub_topic_iam_member" "spanner_member" {
 
 resource "google_cloud_asset_project_feed" "spanner_project_feed" {
   project      = var.project_id
-  feed_id      = "assets"
+  feed_id      = "spanner_assets"
   content_type = "RESOURCE"
   asset_types = var.spanner_asset_list
   feed_output_config {
