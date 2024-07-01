@@ -18,6 +18,13 @@ resource "google_cloud_asset_project_feed" "project_feed" {
   depends_on = [google_pubsub_topic.topic]
 }
 
+resource "google_pubsub_topic_iam_member" "spanner_member" {
+  project  = var.project_id                      
+  topic    = google_pubsub_topic.spanner_topic.id 
+  role     = "roles/pubsub.publisher"
+  member   = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-cloudasset.iam.gserviceaccount.com"
+}
+
 resource "google_cloud_asset_project_feed" "spanner_project_feed" {
   project      = var.project_id
   feed_id      = "assets"
