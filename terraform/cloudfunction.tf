@@ -4,7 +4,7 @@ resource "google_cloudfunctions_function" "function" {
   available_memory_mb = 256
   runtime             = "python39"
   source_repository {
-    url = "https://source.developers.google.com/projects/${var.project_id}/locations/${var.region}/repos/PLUTO/moveable-aliases/master/paths/cloudfunction"
+    url = "https://source.developers.google.com/projects/${var.project_id}/repos/PLUTO/moveable-aliases/master/paths/cloudfunction"
   }
   entry_point       = "pubsub_to_bigquery"
   timeout = 60
