@@ -24,7 +24,7 @@ PubSub Topic called "activities"\
     Command: `gcloud pubsub topics create activities`
 
 PubSub Subscription called "activites-catchall"\
-    Command : `gcloud pubsub subscriptions create activites-catchall --topic projects/PROJECTID/topics/activities`
+    Command : `gcloud pubsub subscriptions create activites-catchall --topic projects/$GOOGLE_CLOUD_PROJECT/topics/activities`
 
 Create a Cloud Function\
     Python \
@@ -36,15 +36,15 @@ Create a Cloud Function\
 Enabling the APIs\
     Command: `gcloud services enable cloudasset.googleapis.com`\
     Command: `gcloud services enable cloudresourcemanager.googleapis.com`\
-    Command: `gcloud sercies list`
+    Command: `gcloud services list`
 
 Asset Export to BigQuery Example\
-    Command: `gcloud asset export --project PROJECTID --bigquery-table export --bigquery-dataset activities`
+    Command: `gcloud asset export --project $GOOGLE_CLOUD_PROJECT --bigquery-table export --bigquery-dataset activities`
 
 Asset Feed Creation\
-    Command: `gcloud asset feeds create activities --project=PROJECTID 
+    Command: `gcloud asset feeds create activities --project=$GOOGLE_CLOUD_PROJECT 
 	--content-type=resource --asset-types="compute.googleapis.com.*" 
-	--pubsub-topic=projects/PROJECTID/topics/activities`
+	--pubsub-topic=projects/$GOOGLE_CLOUD_PROJECT/topics/activities`
 
 
 
