@@ -1,5 +1,5 @@
 variable "project_id" {
-  default = "REPLACEWITHPROJECTID"
+  default = "roimb-devopsuser9-dev"
   type    = string
 }
 
