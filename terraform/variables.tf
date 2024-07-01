@@ -23,6 +23,11 @@ variable "function" {
   type    = string
 }
 
+variable "spanner_function" {
+  default = "pubsubtobq2"
+  type    = string
+}
+
 variable "function_sa" {
   default = "plutosa"
   type    = string
