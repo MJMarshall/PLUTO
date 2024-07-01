@@ -11,3 +11,17 @@ resource "google_pubsub_subscription" "subscription" {
   ack_deadline_seconds = 60
   depends_on           = [google_pubsub_topic.topic]
 }
+
+resource "google_pubsub_topic" "spanner_topic" {
+  project                    = var.project_id
+  name                       = var.spanner_topic
+  message_retention_duration = "10000s"
+}
+
+resource "google_pubsub_subscription" "spanner_subscription" {
+  project              = var.project_id
+  name                 = "${var.project_id}-spanner-catchall"
+  topic                = google_pubsub_topic.spanner_topic.name
+  ack_deadline_seconds = 60
+  depends_on           = [google_pubsub_topic.spanner_topic]
+}
