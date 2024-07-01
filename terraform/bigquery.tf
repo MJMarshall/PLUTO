@@ -18,3 +18,16 @@ resource "google_bigquery_table" "bqtable" {
     EOF
   deletion_protection = false
 }
+
+resource "google_bigquery_table" "spanner_bqtable" {
+  project             = var.project_id
+  depends_on          = [google_bigquery_dataset.bqdataset]
+  dataset_id          = google_bigquery_dataset.bqdataset.dataset_id
+  table_id            = "spanner_resources"
+  schema              = <<EOF
+    [
+        {"name": "messages","type": "STRING"}
+    ]
+    EOF
+  deletion_protection = false
+}
