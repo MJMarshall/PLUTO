@@ -16,3 +16,14 @@ def pubsub_to_bigquery(event, context):
     errors = client.insert_rows(table, row_to_insert)
     if errors == []:
         print("Row Inserted: " + pubsub_message)
+
+
+def pubsub_to_bigquery2(event, context):
+    pubsub_message = base64.b64decode(event['data']).decode('utf-8')
+    print("Row To Insert: " + pubsub_message)
+    client = bigquery.Client()
+    table = client.get_table("activities.spanner_resources")
+    row_to_insert = [(pubsub_message,)]     # NOTE - the trailing comma is required for this case - it expects a tuple
+    errors = client.insert_rows(table, row_to_insert)
+    if errors == []:
+        print("Row Inserted: " + pubsub_message)
